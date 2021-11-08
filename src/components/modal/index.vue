@@ -30,7 +30,10 @@
                 </div>
               </slot>
             </div>
-            <div class="modal-body-wrapper scrollbar">
+            <div
+              class="modal-body-wrapper scrollbar"
+              :class="isFolderEmpty ? 'flex' : ''"
+            >
               <slot name="modal-body">
                 <button
                   class="folder-item active-hover pointer"
@@ -95,6 +98,11 @@
                     </span>
                   </div>
                 </button>
+                <!--placeholders for showing if there is no file or folder  -->
+                <div v-if="isFolderEmpty" class="no-file-folder-wrapper">
+                  No files or folder present
+                </div>
+                <!--placeholders for showing if there is no file or folder  -->
               </slot>
             </div>
             <div class="modal-footer-wrapper">
@@ -132,6 +140,7 @@ export default {
       temporarySelection: [],
       fileRoot: "C:\\",
       errorImagePlaceholder,
+      isFolderEmpty: false,
     };
   },
   components: {
@@ -184,6 +193,22 @@ export default {
       handler: function (newValue) {
         if (newValue.length) {
           this.temporarySelection = [...newValue];
+        }
+      },
+      deep: true, // check the children of the arr changes
+    },
+    folderStructure: {
+      handler: function () {
+        const filesArray = this.folderStructure.files.filter(
+          (file) =>
+            file.mimeType === "image/jpeg" ||
+            file.mimeType === "image/png" ||
+            file.mimeType === "application/pdf"
+        );
+        if (!filesArray.length && !this.folderStructure.folders.length) {
+          this.isFolderEmpty = true;
+        } else {
+          this.isFolderEmpty = false;
         }
       },
       deep: true, // check the children of the arr changes

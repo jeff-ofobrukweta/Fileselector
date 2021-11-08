@@ -157,6 +157,12 @@
         }
       }
     }
+    .modal-body-wrapper.flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
     .modal-footer-wrapper {
       display: flex;
       align-items: center;

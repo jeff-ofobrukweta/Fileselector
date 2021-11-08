@@ -1,7 +1,6 @@
 .modal-background-main {
   position: absolute;
   z-index: 999;
-  background: #0000004f;
   top: 0;
   width: 100%;
   height: 100%;
@@ -17,7 +16,19 @@
     border-radius: 16px;
     padding: 1rem 1rem;
     max-width: 25rem;
+    right: 30%;
+    position: absolute;
+    top: 26%;
     width: -webkit-fill-available;
+
+    @media screen and(max-width: 1020px) {
+      // padding: 1rem;
+      right: 25%;
+    }
+    @media screen and(max-width: 750px) {
+      // position: initial;
+      right: initial;
+    }
     @media screen and(max-width: 450px) {
       padding: 1rem;
     }

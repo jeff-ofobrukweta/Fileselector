@@ -111,7 +111,7 @@
                         ? temporarySelection.length
                         : ""
                     }}
-                    Files
+                    File{{ temporarySelection.length > 1 ? "s" : "" }}
                   </button>
                 </div>
               </slot>
